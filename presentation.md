@@ -176,15 +176,6 @@ Uber
 - Linguistic Analysis
 - Text Analysis
 - Translator
-- WebLM
-
-## Knowledge
-
-- Academic
-- Entity linking
-- Knowledge exploration
-- QnA maker
-- Recommendations
 
 ## Search (Bing)
 
