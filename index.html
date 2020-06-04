@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Miguel Sánchez de León Peque">
+  <meta name="dcterms.date" content="2017-06-02">
+  <title>IoT y machine learning en Azure</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="revealjs/css/reset.css">
+  <link rel="stylesheet" href="revealjs/css/reveal.css">
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="revealjs/css/theme/white.css" id="theme">
+<link rel="stylesheet" href="markdownrevealstyle/custom.css">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'revealjs/css/print/pdf.css' : 'revealjs/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="revealjs/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <script src="katex/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+    var mathElements = document.getElementsByClassName("math");
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") { katex.render(texText.data, mathElements[i], { displayMode: mathElements[i].classList.contains("display"), throwOnError: false } );
+    }}});</script>
+  <link rel="stylesheet" href="katex/katex.min.css" />
+
+<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"
+  crossorigin="anonymous"></script>
+<script>
+  function addEvent(element, eventName, fn) {
+    if (element.addEventListener)
+      element.addEventListener(eventName, fn, false);
+    else if (element.attachEvent)
+      element.attachEvent('on' + eventName, fn);
+  }
+
+  addEvent(window, 'load', function() {
+    twemoji.parse(document.body, {'folder': 'svg', 'ext': '.svg'});
+  });
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+<div class="logo"><img src="markdownrevealstyle/logo.svg" /></div>
+<div class="markdownreveal_footer">OpenSistemas | <a href="http://www.opensistemas.com">www.opensistemas.com</a></div>
+    <div class="slides">
+
+<section data-background="markdownrevealstyle/background.svg" id="title-slide">
+  <h1 class="title">IoT y machine learning en Azure</h1>
+  <p class="author">Miguel Sánchez de León Peque</p>
+  <p class="date">2017-06-02</p>
+</section>
+
+<section data-background="markdownrevealstyle/background.svg"><section id="iot" class="title-slide slide level1"><h1>IoT</h1></section><section id="what-is-it" class="slide level2">
+<h2>What is it?</h2>
+<blockquote>
+<p><strong>Internetworking</strong> of devices <strong>collecting</strong> and <strong>exchanging</strong> data</p>
+</blockquote>
+<p><img data-src="./figures/iot.jpg" style="width:40.0%" /></p>
+</section><section id="how-does-it-look-like" class="slide level2">
+<h2>How does it look like?</h2>
+<blockquote>
+<p>Internet</p>
+</blockquote>
+<div class="fragment">
+<blockquote>
+<p>Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things Things</p>
+</blockquote>
+</div>
+</section><section id="how-many" class="slide level2">
+<h2>How many?</h2>
+<p>Billions in the following years (tens of billions by 2020)</p>
+<ul>
+<li>Data producers</li>
+</ul>
+</section></section>
+<section data-background="markdownrevealstyle/background.svg"><section id="azure" class="title-slide slide level1"><h1>Azure</h1></section><section id="integrated-solution" class="slide level2">
+<h2>Integrated solution</h2>
+<ul>
+<li>Infraestructure</li>
+<li>Scalability</li>
+<li>Availability</li>
+<li>Real-time data processing</li>
+<li>Real-time visualizations (graphs, maps)</li>
+<li>Alerts</li>
+<li>Predictions</li>
+<li>Security</li>
+</ul>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/azure_iothub_architecture.png" /></p>
+</section><section id="advantages" class="slide level2">
+<h2>Advantages</h2>
+<ul>
+<li>State synchronization</li>
+<li>Per-device authentication</li>
+<li>Route device-to-cloud messages to Azure services</li>
+<li>Monitoring</li>
+<li>Protocols: MQTT, HTTP, AMQP</li>
+<li>Scale</li>
+</ul>
+</section></section>
+<section data-background="markdownrevealstyle/background.svg"><section id="example-fleet-management" class="title-slide slide level1"><h1>Example: fleet management</h1></section><section class="slide level2">
+
+<p><img data-src="./figures/examples_fleet_management_dashboard.png" /></p>
+</section><section id="operations-map" class="slide level2">
+<h2>Operations map</h2>
+<ul>
+<li>Assets tracked/monitored in real-time</li>
+<li>Health status and trip/destination information</li>
+<li>Alerts escalated for attention for immediate action</li>
+</ul>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/examples_fleet_management_operations_map.png" /></p>
+</section><section id="alerts" class="slide level2">
+<h2>Alerts</h2>
+<ul>
+<li>Displayed as a list</li>
+<li>Easily filter by severity or any other metric</li>
+<li>Categories: maintenance, weather, predictive…</li>
+<li>Click to take action</li>
+</ul>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/examples_fleet_management_alerts.png" /></p>
+</section><section id="asset-status" class="slide level2">
+<h2>Asset status</h2>
+<ul>
+<li>Real-time sensor and device data</li>
+<li>Click for current reading and historical information</li>
+</ul>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/examples_fleet_management_asset_status.png" /></p>
+</section><section id="asset-data" class="slide level2">
+<h2>Asset data</h2>
+<ul>
+<li>Current reading</li>
+<li>Compare to historical data</li>
+<li>Warning thresholds</li>
+<li>Predicted readings</li>
+</ul>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/examples_fleet_management_asset_data.png" /></p>
+</section><section id="alert-resolution" class="slide level2">
+<h2>Alert resolution</h2>
+<ul>
+<li>Details about the alert</li>
+<li>Details about the failing part</li>
+<li>Business impact information</li>
+<li>Take action</li>
+</ul>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/examples_fleet_management_alert_resolution_details.png" /></p>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/examples_fleet_management_alert_resolution_response.png" /></p>
+</section></section>
+<section data-background="markdownrevealstyle/background.svg"><section id="example-rockwell-automation" class="title-slide slide level1"><h1>Example: rockwell automation</h1></section><section class="slide level2">
+
+<p><img data-src="./figures/examples_rockwell_automation_dashboard.png" /></p>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/examples_rockwell_automation_alerts.png" /></p>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/examples_rockwell_automation_alert_resolution.png" /></p>
+</section></section>
+<section data-background="markdownrevealstyle/background.svg"><section id="cognitive-services-apis" class="title-slide slide level1"><h1>Cognitive Services APIs</h1></section><section id="what-are-cognitive-services" class="slide level2">
+<h2>What are Cognitive Services?</h2>
+<ul>
+<li>REST based API</li>
+<li>The language you like</li>
+<li>The tools you like</li>
+</ul>
+</section><section id="types" class="slide level2">
+<h2>Types</h2>
+<ul>
+<li>Vision</li>
+<li>Knowledge</li>
+<li>Speech</li>
+<li>Language</li>
+<li>Search</li>
+</ul>
+</section><section id="vision" class="slide level2">
+<h2>Vision</h2>
+<ul>
+<li>Computer vision</li>
+<li>Content moderator</li>
+<li>Emotion</li>
+<li>Face</li>
+<li>Video</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="example">Example</h3>
+<p>Uber</p>
+</section><section id="speech" class="slide level2">
+<h2>Speech</h2>
+<ul>
+<li>Bing speech</li>
+<li>Custom speech service</li>
+<li>Speaker recognition</li>
+</ul>
+</section><section id="language" class="slide level2">
+<h2>Language</h2>
+<ul>
+<li>Bing spell check</li>
+<li>Language understanding</li>
+<li>Linguistic Analysis</li>
+<li>Text Analysis</li>
+<li>Translator</li>
+</ul>
+</section><section id="search-bing" class="slide level2">
+<h2>Search (Bing)</h2>
+<ul>
+<li>Autosuggest</li>
+<li>Image</li>
+<li>News</li>
+<li>Video</li>
+<li>Web</li>
+</ul>
+</section><section id="fun" class="slide level2">
+<h2>Fun!</h2>
+</section></section>
+<section data-background="markdownrevealstyle/background.svg"><section id="machine-learning" class="title-slide slide level1"><h1>Machine Learning</h1></section><section id="the-line-equation" class="slide level2">
+<h2>The line equation</h2>
+<p>A simple equation:</p>
+<p><span class="math display">y = x + 5</span></p>
+<p>Ease to calculate <span class="math inline">y</span> for different values of <span class="math inline">x</span>.</p>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/line.png" /></p>
+</section><section id="the-inverse-problem" class="slide level2">
+<h2>The inverse problem</h2>
+<p>We do not have the equation:</p>
+<p><span class="math display">y = h(x) ?</span></p>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/line_dots.png" /></p>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/line_dots_error.png" /></p>
+</section><section id="what-is-machine-learning" class="slide level2">
+<h2>What is machine learning?</h2>
+<p>It is a way to make sense of the data (which can be interpreted in different ways).</p>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/model_underfit.png" /></p>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/model_right.png" /></p>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/model_overfit.png" /></p>
+</section><section id="the-trade-off" class="slide level2">
+<h2>The trade-off</h2>
+<ul>
+<li>Bias vs. variance</li>
+<li>Abstraction vs. specificity</li>
+<li>Underfit vs. overfit</li>
+</ul>
+</section></section>
+<section data-background="markdownrevealstyle/background.svg"><section id="linear-regression" class="title-slide slide level1"><h1>Linear Regression</h1></section><section id="model" class="slide level2">
+<h2>Model</h2>
+<p><span class="math display">h = w_0 + w_1 x_1 + w_2 x_2 + ... + w_D x_D</span></p>
+<ul>
+<li>Simple</li>
+<li>Closed-form solution (<span class="math inline">D\downarrow</span>)</li>
+<li><span class="math inline">\nabla RSS</span> easily computable</li>
+</ul>
+</section><section id="example-1" class="slide level2">
+<h2>Example</h2>
+<p>How much time does an object take to free-fall down to the floor?</p>
+<p><span class="math inline">t \approx 0.451754 h^{-1/2}</span></p>
+</section><section class="slide level2">
+
+<p><img data-src="./figures/free_fall.png" /></p>
+</section><section id="meet-azure-machine-learning-studio" class="slide level2">
+<h2>Meet Azure Machine Learning Studio</h2>
+</section><section class="slide level2">
+
+<ul>
+<li>Upload a dataset</li>
+<li>Visualizing a dataset</li>
+<li>Opening a dataset with a notebook</li>
+<li>Descriptive statistics</li>
+</ul>
+</section><section class="slide level2">
+
+<ul>
+<li>Split data</li>
+<li>Train model (linear regression)</li>
+<li>Score model</li>
+<li>Evaluate model</li>
+</ul>
+</section><section class="slide level2">
+
+<ul>
+<li>Publish model as a service</li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="revealjs/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: true,
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'revealjs/plugin/zoom-js/zoom.js', async: true },
+          { src: 'revealjs/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
